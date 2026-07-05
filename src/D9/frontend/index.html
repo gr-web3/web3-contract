@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TokenBank - 去中心化代币存储资产看板</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- 引入 Outfit 和 Roboto Mono 字体，展现高级质感 -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- 引入 Ethers.js v6 CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.umd.min.js"></script>
+</head>
+<body>
+    <div class="glow-bg"></div>
+    <div class="container">
+        <!-- 头部导航与钱包状态 -->
+        <header>
+            <div class="logo">
+                <span class="icon">🪙</span>
+                <h1>TokenBank</h1>
+            </div>
+            <button id="connectBtn" class="btn btn-connect">连接 Metamask 钱包</button>
+        </header>
+
+        <!-- 钱包状态指示条 -->
+        <div id="walletBanner" class="wallet-banner hidden">
+            <span class="dot"></span>
+            <span class="address-text">未连接钱包</span>
+        </div>
+
+        <main class="dashboard-grid">
+            <!-- 状态卡片区 -->
+            <section class="card stats-card">
+                <h2>资产面板 (Balance Board)</h2>
+                <div class="stats-container">
+                    <div class="stat-box">
+                        <span class="label">我的代币余额 (My Wallet)</span>
+                        <div class="value-container">
+                            <span id="walletBalance" class="value">0.00</span>
+                            <span class="unit">ME20</span>
+                        </div>
+                    </div>
+                    <div class="stat-box accent-box">
+                        <span class="label">我在 TokenBank 存入余额 (Deposited)</span>
+                        <div class="value-container">
+                            <span id="bankBalance" class="value">0.00</span>
+                            <span class="unit">ME20</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 存入操作区 -->
+            <section class="card action-card">
+                <h2>存入代币 (Deposit)</h2>
+                <p class="desc">将你的代币安全存入 TokenBank 银行中。进行此步需要先授权（Approve）再存款（Deposit）。</p>
+                
+                <div class="input-group">
+                    <label for="depositAmount">存入数量</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="depositAmount" placeholder="输入存入代币数..." min="0" step="any">
+                        <span class="input-unit">ME20</span>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button id="approveBtn" class="btn btn-secondary" disabled>1. 授权代币 (Approve)</button>
+                    <button id="depositBtn" class="btn btn-primary" disabled>2. 确认存入 (Deposit)</button>
+                </div>
+            </section>
+
+            <!-- 取出操作区 -->
+            <section class="card action-card">
+                <h2>取出代币 (Withdraw)</h2>
+                <p class="desc">从 TokenBank 合约中安全取出存入的代币至你的钱包。仅限存入的本金。</p>
+                
+                <div class="input-group">
+                    <label for="withdrawAmount">取出数量</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="withdrawAmount" placeholder="输入取出代币数..." min="0" step="any">
+                        <span class="input-unit">ME20</span>
+                    </div>
+                </div>
+
+                <div class="button-group single-btn">
+                    <button id="withdrawBtn" class="btn btn-danger" disabled>确认取出 (Withdraw)</button>
+                </div>
+            </section>
+
+            <!-- 合约配置状态卡 -->
+            <section class="card config-card">
+                <h2>智能合约配置 (Contract Details)</h2>
+                <div class="config-item">
+                    <span class="cfg-lbl">代币合约 (MyERC20):</span>
+                    <span id="tokenAddressText" class="cfg-val">0x...</span>
+                </div>
+                <div class="config-item">
+                    <span class="cfg-lbl">银行合约 (TokenBank):</span>
+                    <span id="bankAddressText" class="cfg-val">0x...</span>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>© 2026 TokenBank. Powered by Ethereum & Antigravity IDE.</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

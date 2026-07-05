@@ -3,13 +3,13 @@ pragma solidity ^0.8.13;
 
 import {Test} from "forge-std/Test.sol";
 import {MyERC20} from "../src/D6/MyERC20.sol";
-import {AntigravityNFT} from "../src/D6/MyNFT.sol";
+import {MyNFT} from "../src/D6/MyNFT.sol";
 import {NFTMarket} from "../src/D6/NFTMarket.sol";
 import "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
 
 contract NFTMarketTest is Test, IERC721Receiver {
     MyERC20 public token;
-    AntigravityNFT public nft;
+    MyNFT public nft;
     NFTMarket public market;
 
     address public seller = address(0x10);
@@ -18,7 +18,7 @@ contract NFTMarketTest is Test, IERC721Receiver {
 
     function setUp() public {
         token = new MyERC20();
-        nft = new AntigravityNFT();
+        nft = new MyNFT();
         market = new NFTMarket(address(token), address(nft));
 
         // 1. 给 buyer 铸造一些代币
@@ -69,7 +69,7 @@ contract NFTMarketTest is Test, IERC721Receiver {
         // 4. 验证资产转移
         assertEq(nft.ownerOf(tokenId), buyer);
         assertEq(token.balanceOf(seller), price);
-        
+
         // 验证上架信息已被清除
         (address listedSeller, uint256 listedPrice) = market.listings(tokenId);
         assertEq(listedSeller, address(0));

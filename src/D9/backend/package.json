@@ -1,0 +1,14 @@
+{
+  "name": "d9-backend-listener",
+  "version": "1.0.0",
+  "description": "Listen to NFTMarket events using Viem",
+  "main": "listener.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node listener.js"
+  },
+  "dependencies": {
+    "viem": "^2.21.0",
+    "dotenv": "^16.4.5"
+  }
+}
