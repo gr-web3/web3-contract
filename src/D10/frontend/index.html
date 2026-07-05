@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YPNFT Market - 极速上架与交易中心</title>
+    <!-- 引入 Outfit 字体，带来高档现代科技感 -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="glow-bg"></div>
+    <div class="container">
+        <!-- 头部导航与登录状态 -->
+        <header>
+            <div class="logo">
+                <span class="icon">🖼️</span>
+                <h1>YPNFT Market</h1>
+            </div>
+            <!-- 使用 AppKit 提供的 Web Component 登录按钮，极其丝滑 -->
+            <appkit-button></appkit-button>
+        </header>
+
+        <!-- 主内容区 -->
+        <main class="dashboard-grid">
+            
+            <!-- 0. 铸造面板 (Mint Card) -->
+            <section class="card mint-card">
+                <h2>铸造你的 NFT (Mint NFT)</h2>
+                <p class="desc">点击一键铸造一个专属的 YPNFT 资产（代币 ID 会由合约自动递增生成）。</p>
+                
+                <div class="input-group">
+                    <label for="mintTokenUri">NFT 元数据链接 (Token URI)</label>
+                    <input type="text" id="mintTokenUri" placeholder="输入 IPFS 链接..." value="ipfs://bafkreih24mufv5j44c7tcfk55j6d34e2e2l6pljey3675h2lyskdwhs5tq">
+                </div>
+
+                <button id="mintNftBtn" class="btn btn-primary" style="width: 100%; margin-top: 15px;" disabled>确认铸造 (Mint NFT)</button>
+            </section>
+
+            <!-- 1. 上架面板 (Listing Card) -->
+            <section class="card action-card">
+                <h2>上架你的 NFT (List NFT)</h2>
+                <p class="desc">第一步：点击“授权”向市场合约授权操作你的 NFT；第二步：输入价格一键上架销售。</p>
+                
+                <div class="input-group">
+                    <label for="listTokenId">NFT Token ID</label>
+                    <input type="number" id="listTokenId" placeholder="输入你想上架的 Token ID..." min="0">
+                </div>
+
+                <div class="input-group">
+                    <label for="listPrice">销售价格 (ME20 代币)</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="listPrice" placeholder="输入售价..." min="0" step="any">
+                        <span class="input-unit">ME20</span>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button id="approveNftBtn" class="btn btn-secondary" disabled>1. 授权 NFT (Approve)</button>
+                    <button id="listNftBtn" class="btn btn-primary" disabled>2. 确认上架 (List)</button>
+                </div>
+            </section>
+
+            <!-- 2. 代币操作面板 (Balance & Approve Info) -->
+            <section class="card balance-card">
+                <h2>代币资产 (Tokens Board)</h2>
+                <p class="desc">市场支持使用你发行的 ME20 代币直接买卖 NFT。</p>
+                <div class="stats-container">
+                    <div class="stat-box">
+                        <span class="label">我的代币余额</span>
+                        <div class="value-container">
+                            <span id="tokenBalance" class="value">0.00</span>
+                            <span class="unit">ME20</span>
+                        </div>
+                    </div>
+                    <div class="stat-box">
+                        <span class="label">当前市场授权额度</span>
+                        <div class="value-container">
+                            <span id="tokenAllowance" class="value">0.00</span>
+                            <span class="unit">ME20</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group" style="margin-top: 15px;">
+                    <label for="approveAmount">充值/购买前授权代币 (仅传统购买需要)</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="approveAmount" placeholder="输入需要授权给市场的代币数..." min="0">
+                        <span class="input-unit">ME20</span>
+                    </div>
+                </div>
+                <button id="approveTokenBtn" class="btn btn-secondary" style="width: 100%;" disabled>确认授权代币 (Approve Token)</button>
+            </section>
+
+            <!-- 3. 上架市场列表 (Market Listings) -->
+            <section class="card market-listings-card">
+                <h2>在售 NFT 列表 (NFTs on Sale)</h2>
+                <p class="desc">实时展示从区块链拉取到的在售 NFT 列表。你可以选择传统方式购买，或使用回调转账一键极速购买。</p>
+                
+                <div id="listingsGrid" class="listings-grid">
+                    <div class="loading-state">请先连接钱包并载入 Sepolia 链上数据...</div>
+                </div>
+            </section>
+        </main>
+
+        <!-- 页脚 -->
+        <footer>
+            <p>© 2026 YPNFT Market. Integrated with Reown AppKit & Viem.</p>
+        </footer>
+    </div>
+
+    <!-- 挂载 main.js 作为 ES Module -->
+    <script type="module" src="main.js"></script>
+</body>
+</html>
