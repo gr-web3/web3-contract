@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TokenBank - Permit2 签名授权存款演示</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="brand-icon">P2</div>
+        <div>
+          <h1>TokenBank Permit2</h1>
+          <span class="badge-tag">Lesson 12 Demo</span>
+        </div>
+      </div>
+      <button id="connectBtn" class="btn-primary">连接钱包</button>
+    </header>
+
+    <!-- 账户资产面板 -->
+    <div class="glass-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+        <h2 style="font-size: 1.2rem; font-weight: 600;">账户资产状态</h2>
+        <div id="connectionStatus" style="font-size: 0.85rem; color: var(--text-muted);">
+          <span class="status-dot status-offline"></span>未连接
+        </div>
+      </div>
+      
+      <div class="grid-2">
+        <div class="stat-box">
+          <div class="stat-label">我的 ERC20 余额</div>
+          <div class="stat-value" id="walletBalance">0.00 MTK</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">TokenBank 中的存款</div>
+          <div class="stat-value" id="bankBalance">0.00 MTK</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Permit2 存款交互区 -->
+    <div class="glass-card">
+      <div class="step-indicator">
+        <div class="step-num">1</div>
+        <div class="step-title">一键授权 Permit2 合约</div>
+      </div>
+      <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">
+        通过标准 ERC20 <code>approve</code> 将代币额度授权给 Uniswap Canonical <code>Permit2</code> 合约（仅需授权一次）。
+      </p>
+      <button id="approvePermit2Btn" class="btn-secondary" style="width: 100%;">
+        授权 Permit2 合约
+      </button>
+    </div>
+
+    <div class="glass-card">
+      <div class="step-indicator">
+        <div class="step-num">2</div>
+        <div class="step-title">Permit2 签名授权无感存款</div>
+      </div>
+      <div class="form-group">
+        <label for="depositAmount">存款金额 (MTK)</label>
+        <input type="number" id="depositAmount" class="form-control" placeholder="输入存款金额，例如 50" value="50">
+      </div>
+      
+      <button id="permit2DepositBtn" class="btn-primary" style="width: 100%;">
+        使用 Permit2 签名并一键存款
+      </button>
+    </div>
+
+    <!-- 日志面板 -->
+    <div class="glass-card">
+      <h3 style="font-size: 1rem; margin-bottom: 0.75rem;">控制台交互日志</h3>
+      <div id="logBox" class="log-box">>>> 页面初始化完成，等待连接钱包...</div>
+    </div>
+  </div>
+
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
