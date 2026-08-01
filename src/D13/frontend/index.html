@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ERC20 转账记录索引与查询系统 (Lesson 13)</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="brand-logo">IDX</div>
+        <div>
+          <h1>ERC20 Transfer Indexer</h1>
+          <span class="badge-tag">Lesson 13 Dashboard</span>
+        </div>
+      </div>
+      <button id="connectBtn" class="btn-primary">连接钱包</button>
+    </header>
+
+    <!-- 搜索与筛选区 -->
+    <div class="glass-card">
+      <div class="search-bar">
+        <input 
+          type="text" 
+          id="addressInput" 
+          class="search-input" 
+          placeholder="输入要查询的钱包地址 (如 0x1111...)"
+          value="0x1111111111111111111111111111111111111111"
+        />
+        <button id="searchBtn" class="btn-primary">查询记录</button>
+      </div>
+
+      <!-- 数据概览统计 -->
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-title">当前查询地址记录总数</div>
+          <div class="stat-number" id="totalCount">0</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-title">累计转入记录</div>
+          <div class="stat-number" id="inCount" style="color: var(--success-color);">0</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-title">累计转出记录</div>
+          <div class="stat-number" id="outCount" style="color: var(--danger-color);">0</div>
+        </div>
+      </div>
+
+      <!-- 表格展示区 -->
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>方向</th>
+              <th>转出方 (From)</th>
+              <th>转入方 (To)</th>
+              <th>转账金额</th>
+              <th>区块高度</th>
+              <th>交易哈希</th>
+            </tr>
+          </thead>
+          <tbody id="transferTableBody">
+            <tr>
+              <td colspan="6" class="empty-state">点击"连接钱包"或输入地址查询转账履历...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

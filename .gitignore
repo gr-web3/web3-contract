@@ -21,5 +21,7 @@ docs/
 !.env.example
 src/D9/backend/node_modules/*
 src/D10/frontend/node_modules/*
+src/D13/frontend/node_modules/*
+src/D13/backend/node_modules/*
 lib/*
 文本编辑
