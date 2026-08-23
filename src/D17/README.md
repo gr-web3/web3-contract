@@ -1,8 +1,12 @@
-# 第十七课 17.1 可升级合约设计与部署 - 操作指南与原理解析
+# 第十七课 可升级合约设计部署与存储布局原理解析
 
-本目录包含 **第十七课 (17.1 可升级合约设计与部署)** 的全部智能合约源码、离线签名逻辑解析、操作步骤说明及 Sepolia 测试网部署地址。
+本目录包含 **第十七课 (17.1 可升级合约设计与部署)** 与 **(17.2 可升级合约存储布局理解)** 的全部智能合约源码、离线签名逻辑解析、操作步骤说明、Sepolia 测试网部署地址及 17.2 存储布局 Q&A 问答文档：
+
+- **17.1 原理解析与代码架构**: [`Upgradeable_Architecture.md`](file:///Users/a33445566/Developer/project/w3/solidity-rel/upchain_2026/src/D17/Upgradeable_Architecture.md)
+- **17.2 存储布局理解 Q&A 问答文档**: [`17.2_Storage_Layout_QnA.md`](file:///Users/a33445566/Developer/project/w3/solidity-rel/upchain_2026/src/D17/17.2_Storage_Layout_QnA.md)
 
 ---
+
 
 ## 一、 合约架构与功能概述
 
